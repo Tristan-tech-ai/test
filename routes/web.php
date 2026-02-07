@@ -38,12 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
 });
 
-Route::get('/minuman', [AdminController::class, 'index'])->name('minuman.index');
-
-use App\Http\Controllers\AdminController;
-
 Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/minuman', [AdminController::class, 'index'])->name('minuman.index');
 });
 
 use App\Http\Controllers\MinumanController;
@@ -66,5 +62,5 @@ Route::middleware('auth')->group(function () {
 use App\Http\Controllers\OrderController;
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
-    Route::post('/admin/orders/{orderId}/update-statuss [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+    Route::post('/admin/orders/{orderId}/update-status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatuss');
 });
