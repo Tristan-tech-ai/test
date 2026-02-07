@@ -24,25 +24,3 @@ Route::get('/test', function () {
 });
 
 require __DIR__.'/auth.php';
-
-Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/minuman', [AdminController::class, 'index'])->name('minuman.index');
-});
-
-Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/minuman/create', [MinumanController::class, 'create'])->name('minuman.create');
-    Route::post('/minuman', [MinumanController::class, 'store'])->name('minuman.store');
-    Route::get('/minuman/{id}/edit', [MinumanController::class, 'edit'])->name('minuman.edit');
-    Route::put('/minuman/{id}', [MinumanController::class, 'update'])->name('minuman.update');
-    Route::delete('/minuman/{id}', [MinumanController::class, 'destroy'])->name('minuman.destroy');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::post('/order/{minumanId}', [OrderController::class, 'placeOrder'])->name('order.place');
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-});
-
-Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
-    Route::post('/admin/orders/{orderId}/update-status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatuss');
-});
