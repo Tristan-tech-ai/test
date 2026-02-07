@@ -38,4 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
 });
 
+Route::get('/minuman', [AdminController::class, 'index'])->name('minuman.index');
+
 use App\Http\Controllers\AdminController;
