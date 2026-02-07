@@ -62,5 +62,5 @@ Route::middleware('auth')->group(function () {
 use App\Http\Controllers\OrderController;
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->name('admin.orders.index');
-    Route::post('/admin/orders/{orderId}/update-status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+    Route::post('/admin/orders/{orderId}/update-status', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatuss');
 });
